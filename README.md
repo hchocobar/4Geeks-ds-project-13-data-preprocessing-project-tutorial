@@ -1,89 +1,43 @@
-# Data Science Project Boilerplate
+<!-- hide -->
+# Exploratory data analysis in Python - Step by step guide
+<!-- endhide -->
 
-This boilerplate is designed to kickstart data science projects by providing a basic setup for database connections, data processing, and machine learning model development. It includes a structured folder organization for your datasets and a set of pre-defined Python packages necessary for most data science tasks.
+- Download New York Airbnb data from Kaggle.com.
+- Perform a complete EDA, including all steps of the process.
+- Write down the conclusions of each step and analyze the results based on the relationships between the variables.
 
-## Structure
+## 🌱 How to start this project
 
-The project is organized as follows:
+Follow the instructions below:
 
-- `app.py` - The main Python script that you run for your project.
-- `explore.py` - A notebook to explore data, play around, visualize, clean, etc. Ideally the notebook code should be migrated to the app.py when moving to production.
-- `utils.py` - This file contains utility code for operations like database connections.
-- `requirements.txt` - This file contains the list of necessary python packages.
-- `models/` - This directory should contain your SQLAlchemy model classes.
-- `data/` - This directory contains the following subdirectories:
-  - `interin/` - For intermediate data that has been transformed.
-  - `processed/` - For the final data to be used for modeling.
-  - `raw/` - For raw data without any processing.
- 
-    
-## Setup
+1. Create a new repository based on our [machine learning project](https://github.com/4GeeksAcademy/machine-learning-python-template/) or [by clicking here](https://github.com/4GeeksAcademy/machine-learning-python-template/generate).
+2. Open the newly created repository in Codespace using the [Codespace button extension](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository#creating-a-codespace-for-a-repository).
+3. Once the Codespace VSCode has finished opening, start your project by following the instructions below.
 
-**Prerequisites**
+## 🚛 How to deliver this project
 
-Make sure you have Python 3.11+ installed on your. You will also need pip for installing the Python packages.
+Once you have finished solving the exercises, be sure to commit your changes, push them to your repository, and go to 4Geeks.com to upload the repository link.
 
-**Installation**
+## 📝 Instructions
 
-Clone the project repository to your local machine.
+### Airbnb in New York
 
-Navigate to the project directory and install the required Python packages:
+A company has collected New York housing rental data from the Airbnb app during 2019. This dataset was used to train Machine Learning models during that year, in an open competition.
 
-```bash
-pip install -r requirements.txt
-```
+We will now use it to conduct a study about the variables that make up the dataset in order to understand it and draw conclusions about it.
 
-**Create a database (if needed)**
+#### Step 1: Loading the dataset
 
-Create a new database within the Postgres engine by customizing and executing the following command: `$ createdb -h localhost -U <username> <db_name>`
-Connect to the Postgres engine to use your database, manipulate tables and data: `$ psql -h localhost -U <username> <db_name>`
-NOTE: Remember to check the ./.env file information to get the username and db_name.
+You can download the dataset directly from Kaggle.com or from the following link: `https://raw.githubusercontent.com/4GeeksAcademy/data-preprocessing-project-tutorial/main/AB_NYC_2019.csv`. Store the raw data in the `./data/raw` folder.
 
-Once you are inside PSQL you will be able to create tables, make queries, insert, update or delete data and much more!
+#### Step 2: Perform a complete EDA
 
-**Environment Variables**
+This step is vital to ensure that we keep the variables that are strictly necessary and eliminate those that are not relevant or do not provide information. Use the example Notebook we worked on and adapt it to this use case.
 
-Create a .env file in the project root directory to store your environment variables, such as your database connection string:
+Be sure to conveniently divide the data set into `train` and `test` as we have seen in the lesson.
 
-```makefile
-DATABASE_URL="your_database_connection_url_here"
-```
+#### Step 3: Save the processed dataset
 
-## Running the Application
+After the EDA you can save the data in the `./data/processed` folder. Make sure to add the data folder in the `.gitignore`. The data as well as the models should not be uploaded to git.
 
-To run the application, execute the app.py script from the root of the project directory:
-
-```bash
-python app.py
-```
-
-## Adding Models
-
-To add SQLAlchemy model classes, create new Python script files inside the models/ directory. These classes should be defined according to your database schema.
-
-Example model definition (`models/example_model.py`):
-
-```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-```
-
-## Working with Data
-
-You can place your raw datasets in the data/raw directory, intermediate datasets in data/interim, and the processed datasets ready for analysis in data/processed.
-
-To process data, you can modify the app.py script to include your data processing steps, utilizing pandas for data manipulation and analysis.
-
-## Contributors
-
-This template was built as part of the 4Geeks Academy [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about [4Geeks Academy's BootCamp programs](https://4geeksacademy.com/us/programs) here.
-
-Other templates and resources like this can be found on the school GitHub page.
+> Note: We also incorporated the solution samples on `./solution.ipynb` that we strongly suggest you only use if you are stuck for more than 30 min or if you have already finished and want to compare it with your approach.

@@ -1,88 +1,43 @@
-# Plantilla de Proyecto de Ciencia de Datos
+<!-- hide -->
+# Análisis exploratorio de datos en Python - Guía paso a paso
+<!-- endhide -->
 
-Esta plantilla está diseñada para impulsar proyectos de ciencia de datos proporcionando una configuración básica para conexiones de base de datos, procesamiento de datos, y desarrollo de modelos de aprendizaje automático. Incluye una organización estructurada de carpetas para tus conjuntos de datos y un conjunto de paquetes de Python predefinidos necesarios para la mayoría de las tareas de ciencia de datos.
+- Descarga los datos de Airbnb de Nueva York de Kaggle.com.
+- Realiza un EDA completo, incluyendo todos los pasos del proceso.
+- Escribe las conclusiones de cada paso y analiza los resultados sobre las relaciones entre las variables.
 
-## Estructura
+## 🌱 Cómo iniciar este proyecto
 
-El proyecto está organizado de la siguiente manera:
+Sigue las siguientes instrucciones:
 
-- `app.py` - El script principal de Python que ejecutas para tu proyecto.
-- `explore.py` - Un notebook para que puedas hacer tus exploraciones, idealmente el codigo de este notebook se migra hacia app.py para subir a produccion.
-- `utils.py` - Este archivo contiene código de utilidad para operaciones como conexiones de base de datos.
-- `requirements.txt` - Este archivo contiene la lista de paquetes de Python necesarios.
-- `models/` - Este directorio debería contener tus clases de modelos SQLAlchemy.
-- `data/` - Este directorio contiene los siguientes subdirectorios:
-  - `interim/` - Para datos intermedios que han sido transformados.
-  - `processed/` - Para los datos finales a utilizar para el modelado.
-  - `raw/` - Para datos brutos sin ningún procesamiento.
+1. Crea un nuevo repositorio basado en el [proyecto de Machine Learning](https://github.com/4GeeksAcademy/machine-learning-python-template/) o [haciendo clic aquí](https://github.com/4GeeksAcademy/machine-learning-python-template/generate).
+2. Abre el repositorio creado recientemente en Codespace usando la [extensión del botón de Codespace](https://docs.github.com/es/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository#creating-a-codespace-for-a-repository).
+3. Una vez que el VSCode del Codespace haya terminado de abrirse, comienza tu proyecto siguiendo las instrucciones a continuación.
 
-## Configuración
+## 🚛 Cómo entregar este proyecto
 
-**Prerrequisitos**
+Una vez que hayas terminado de resolver el caso práctico, asegúrate de confirmar tus cambios, haz push a tu repositorio y ve a 4Geeks.com para subir el enlace del repositorio.
 
-Asegúrate de tener Python 3.11+ instalado en tu máquina. También necesitarás pip para instalar los paquetes de Python.
+## 📝 Instrucciones
 
-**Instalación**
+### Airbnb en Nueva York
 
-Clona el repositorio del proyecto en tu máquina local.
+Una empresa ha recolectado la información del alquiler de viviendas en Nueva York a través de la aplicación Airbnb durante el año 2019. Este conjunto de datos se utilizó para entrenar modelos de Machine Learning durante ese año, en una competición en abierto.
 
-Navega hasta el directorio del proyecto e instala los paquetes de Python requeridos:
+Ahora lo utilizaremos para llevar a cabo un estudio acerca de las variables que componen el dataset a fin de comprenderlo y obtener conclusiones sobre él.
 
-```bash
-pip install -r requirements.txt
-```
+#### Paso 1: Carga del conjunto de datos
 
-**Crear una base de datos (si es necesario)**
+Puedes descargar el conjunto de datos directamente desde Kaggle.com o en el siguiente enlace: `https://raw.githubusercontent.com/4GeeksAcademy/data-preprocessing-project-tutorial/main/AB_NYC_2019.csv`. Almacena los datos en crudo en la carpeta `./data/raw`.
 
-Crea una nueva base de datos dentro del motor Postgres personalizando y ejecutando el siguiente comando: `$ createdb -h localhost -U <username> <db_name>`
-Conéctate al motor Postgres para usar tu base de datos, manipular tablas y datos: `$ psql -h localhost -U <username> <db_name>`
-NOTA: Recuerda revisar la información del archivo ./.env para obtener el nombre de usuario y db_name.
+#### Paso 2: Realiza un EDA completo
 
-¡Una vez que estés dentro de PSQL podrás crear tablas, hacer consultas, insertar, actualizar o eliminar datos y mucho más!
+Este paso es vital para asegurar que nos quedamos con las variables estrictamente necesarias y eliminamos las que no son relevantes o no aportan información. Utiliza el Notebook de ejemplo que trabajamos y adáptalo a este caso de uso.
 
-**Variables de entorno**
+Asegúrate de dividir convenientemente el conjunto de datos en `train` y `test` como hemos visto en la lección.
 
-Crea un archivo .env en el directorio raíz del proyecto para almacenar tus variables de entorno, como tu cadena de conexión a la base de datos:
+#### Paso 3: Guarda el conjunto de datos procesado
 
-```makefile
-DATABASE_URL="your_database_connection_url_here"
-```
+Después del EDA puedes guardar los datos en la carpeta `./data/processed`. Asegúrate de agregar la carpeta de los datos en el `.gitignore`. Los datos al igual que los modelos no se deben subir a git.
 
-## Ejecutando la Aplicación
-
-Para ejecutar la aplicación, ejecuta el script app.py desde la raíz del directorio del proyecto:
-
-```bash
-python app.py
-```
-
-## Añadiendo Modelos
-
-Para añadir clases de modelos SQLAlchemy, crea nuevos archivos de script de Python dentro del directorio models/. Estas clases deben ser definidas de acuerdo a tu esquema de base de datos.
-
-Definición del modelo de ejemplo (`models/example_model.py`):
-
-```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-```
-
-## Trabajando con Datos
-
-Puedes colocar tus conjuntos de datos brutos en el directorio data/raw, conjuntos de datos intermedios en data/interim, y los conjuntos de datos procesados listos para el análisis en data/processed.
-
-Para procesar datos, puedes modificar el script app.py para incluir tus pasos de procesamiento de datos, utilizando pandas para la manipulación y análisis de datos.
-
-## Contribuyentes
-
-Esta plantilla fue construida como parte del [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre [los programas BootCamp de 4Geeks Academy](https://4geeksacademy.com/us/programs) aquí.
-
-Otras plantillas y recursos como este se pueden encontrar en la página de GitHub de la escuela.
+> Nota: También incorporamos muestras de solución en `./solution.ipynb` que te sugerimos honestamente que solo uses si estás atascado por más de 30 minutos o si ya has terminado y quieres compararlo con tu enfoque.
